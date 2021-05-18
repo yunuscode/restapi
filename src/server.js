@@ -15,7 +15,7 @@ app.use(async (req, res, next) => {
 })
 
 app.use(cors()) 
-app.listen(8080, () => console.log(`SERVER READY`))
+app.listen(3000, () => console.log(`SERVER READY`))
 
 
 fs.readdir(path.join(__dirname, "routes"), (err, files) => {
