@@ -35,3 +35,5 @@ fs.readdir(path.join(__dirname, "routes"), (err, files) => {
 // 500 Server Error
 
 // MVC = Model View Router
+
+// DDOS = 1000000 + 10M
