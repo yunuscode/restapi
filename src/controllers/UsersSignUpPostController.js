@@ -3,14 +3,16 @@ const SignUpValidation = require('../validations/SignUpValidation')
 
 module.exports = async (req, res) => {
     try {
-        let { name, password } = await SignUpValidation.validateAsync(req.body)
+        let { name, password, phone } = await SignUpValidation.validateAsync(req.body)
         let user = await req.psql.users.create({
-            name: name,
-            password: await generateHash(password)
+            name,
+            password: await generateHash(password),
+            phone
         })
         user = {
             id: user.id,
-            name: user.name
+            name: user.name,
+            phone: user.phone
         }
         res.status(200).json({
             ok: true,
