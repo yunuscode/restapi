@@ -19,6 +19,8 @@ app.use(async (req, res, next) => {
     next()
 })
 
+app.use('/uploads', express.static(path.join(__dirname, "uploads")))
+
 app.use(cors()) 
 app.listen(80, () => console.log(`SERVER READY`))
 
