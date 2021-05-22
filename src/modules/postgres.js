@@ -38,6 +38,11 @@ async function postgres () {
                 allowNull: false
             }
         })
+        await db.files.belongsTo(db.users, {
+            foreignKey: {
+                name: 'user_id'
+            }
+        })
         // sequelize.sync({ force: true })
         return db
     } catch (error) {
