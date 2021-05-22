@@ -1,0 +1,29 @@
+const BlogValidation = require("../validations/BlogValidation")
+const slugify = require('slugify')
+
+
+module.exports = async (req, res) => {
+    try {
+        const data = await BlogValidation.validateAsync(req.body)
+        const slugified = slugify(data.title, {
+            replacement: '-',
+            remove: undefined,
+            lower: true,
+            strict: true,
+        })
+        const blog = await req.psql.blogs.create({
+            title: data.title,
+            body: data.body,
+            media_id: data.media,
+            user_id: req.user.id,
+            slugify: slugified
+        })
+        await res.json({
+            ok: true,
+            data: blog
+        })
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
